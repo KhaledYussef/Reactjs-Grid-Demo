@@ -14,20 +14,22 @@ import {
   ExcelExport,
   PdfExport,
 } from '@syncfusion/ej2-react-grids';
-import { DataManager, WebApiAdaptor, WebMethodAdaptor, UrlAdaptor } from '@syncfusion/ej2-data';
+import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
 import './App.css';
 
 
 
 function App() {
   // const toolbarOptions = ['ColumnChooser'];
-  const data = new DataManager({ url: 'https://localhost:7092/Auth', adaptor: new WebApiAdaptor(), crossDomain: true });
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyVHlwZSI6IkN1c3RvbWVyIiwiUmVmZXJlbmNlSWQiOiIxIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbW9iaWxlcGhvbmUiOiJwaG9uZU51bWJlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InRoZXNoYWRvdy5raGFsZWRAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IkFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI3NWJiOGU4YS0yZWI0LTQwMjAtYTkyNy1lOGM3YjllY2Q1MDkiLCJleHAiOjE2Nzc2OTgwMzksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzkyLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzkyLyJ9.qegm0VZltZpSb0IoiTdkiHjCz9-dG4SgebzD4CbsWwo';
   var data2 = new DataManager({
     adaptor: new UrlAdaptor(),
-    url: 'https://localhost:7092/Auth', crossDomain: true
+    url: 'https://localhost:7092/Company',
+    crossDomain: true,
+    headers: [{ 'Authorization': `Bearer ${token}` }],
   })
   let gridInstance;
-  const sortingOptions = { columns: [{ field: 'id', direction: 'Descending' }] };
+  // const sortingOptions = { columns: [{ field: 'id', direction: 'Descending' }] };
   function toolbarClick(args) {
     console.log(args.item.text)
     switch (args.item.text) {
@@ -56,9 +58,10 @@ function App() {
         showColumnChooser={true}
         allowPdfExport={true}
         allowExcelExport={true}
+        // enableRtl={true}
         toolbar={toolbarOptions}
-        sortSettings={sortingOptions}
-        pageSettings={{ pageCount: 5, pageSize: 10 }}>
+        // sortSettings={sortingOptions}
+        pageSettings={{ pageCount: 10, pageSize: 10, pageSizes: [10, 20, 50, 100] }}>
         <ColumnsDirective>
           <ColumnDirective field='id' width='120' textAlign='Right'></ColumnDirective>
           <ColumnDirective field='phone' width='160'></ColumnDirective>
