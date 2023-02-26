@@ -24,7 +24,7 @@ export default class Fileupload extends Component {
 		let storageAccName = "rahaldeliverystorage";
 
 		// don't change it
-		let sasToken = "?sv=2021-06-08&ss=b&srt=sco&sp=rwdlaciytfx&se=2025-02-26T20:39:10Z&st=2023-02-26T12:39:10Z&spr=https,http&sig=sRSgY170ZMgc%2BiHX3%2Bpl7viGIQg9FRJ9WxJWmmqS9vA%3D";
+		let sasToken = "Ask me when you want it";
 
 		// don't change it
 		const blobService = new BlobServiceClient(
